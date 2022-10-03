@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import debug from 'utils/debug';
 import { TodoDataType } from 'types/db/todo';
 import { StyleProps } from 'types/style/style.types';
-import TodoInput from 'pages/todolist/components/TodoInput';
-import TodoTItle from 'pages/todolist/components/TodoTitle';
-import TodoList from 'pages/todolist/components/TodoList';
+import TodoInput from 'pages/todoList/components/TodoInput';
+import TodoTItle from 'pages/todoList/components/TodoTitle';
+import TodoList from 'pages/todoList/components/TodoList';
 
 const TodoPage = () => {
     // state
