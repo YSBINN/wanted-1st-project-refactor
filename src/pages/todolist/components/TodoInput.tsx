@@ -1,5 +1,5 @@
 import { SetStateAction, useCallback, Dispatch, FC } from 'react';
-import CommonButton from 'components/common/button';
+import CommonButton from 'components/button';
 import useInput from 'hooks/useInput';
 import TodoService from 'services/todoServeice';
 import debug from 'utils/debug';

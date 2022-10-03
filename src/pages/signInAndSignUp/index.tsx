@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState, FC } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MainLayout from 'components/common/layout';
+import MainLayout from 'components/layout';
 import TokenService from 'services/tokenService';
 import styled from 'styled-components';
-import MainBanner from 'components/main/mainBanner';
-import MainLogin from 'components/main/mainLogin';
-import SignModal from 'components/main/signupModal';
+import MainBanner from 'pages/signInAndSignUp/components/MainBanner';
+import MainLogin from 'pages/signInAndSignUp/components/LoginForm';
+import SignModal from 'pages/signInAndSignUp/components/SignUpModal';
 
-const MainPage: FC = () => {
+export default function MainPage() {
     // state
     const [modal, setModal] = useState<boolean>(false);
 
@@ -38,8 +38,7 @@ const MainPage: FC = () => {
             </MainLayout>
         </>
     );
-};
-export default MainPage;
+}
 
 const MainPageInner = styled.div`
     width: 100%;

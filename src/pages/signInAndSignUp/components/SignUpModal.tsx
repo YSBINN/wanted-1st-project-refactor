@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, FC } from 'react';
-import CommonButton from 'components/common/button';
+import CommonButton from 'components/button';
 import { BlackBackGroundTemp } from 'styles/common';
 import useInput from 'hooks/useInput';
 import useRegExp from 'hooks/useRegExp';
 import { useEffect, useState, useCallback } from 'react';
 import UserSerivce from 'services/userService';
 import debug from 'utils/debug';
-import SignModalHeader from './header';
+import SignModalHeader from './SignUpHeader';
 import styled from 'styled-components';
 import { UserDataType } from 'types/db/user';
 

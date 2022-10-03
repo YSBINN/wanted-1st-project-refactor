@@ -2,7 +2,7 @@ import { FC, SetStateAction, useCallback, Dispatch, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
 import useInput from 'hooks/useInput';
-import CommonButton from 'components/common/button';
+import CommonButton from 'components/button';
 import TodoService from 'services/todoServeice';
 import debug from 'utils/debug';
 import { TodoDataType } from 'types/db/todo';

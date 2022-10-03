@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
-import MainLayout from 'components/common/layout';
+import MainLayout from 'components/layout';
 import TodoService from 'services/todoServeice';
 import styled from 'styled-components';
 import debug from 'utils/debug';
 import { TodoDataType } from 'types/db/todo';
 import { StyleProps } from 'types/style/style.types';
-import TodoInput from 'components/todo/todoInput';
-import TodoTItle from 'components/todo/todoTitle';
-import TodoList from 'components/todo/todoList';
+import TodoInput from 'pages/todolist/components/TodoInput';
+import TodoTItle from 'pages/todolist/components/TodoTitle';
+import TodoList from 'pages/todolist/components/TodoList';
 
 const TodoPage = () => {
     // state

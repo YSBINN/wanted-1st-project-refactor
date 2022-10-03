@@ -5,7 +5,7 @@ import debug from 'utils/debug';
 import { useNavigate } from 'react-router-dom';
 import UserSerivce from 'services/userService';
 import TokenService from 'services/tokenService';
-import CommonButton from 'components/common/button';
+import CommonButton from 'components/button';
 import { UserDataType } from 'types/db/user';
 import styled from 'styled-components';
 

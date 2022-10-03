@@ -1,5 +1,5 @@
-import MainPage from 'pages/main';
-import TodoPage from 'pages/todo';
+import MainPage from 'pages/signInAndSignUp';
+import TodoPage from 'pages/todolist';
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyle from 'styles/global';
