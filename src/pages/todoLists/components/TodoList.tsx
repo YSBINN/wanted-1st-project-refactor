@@ -63,7 +63,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
                 alert('투두리스트가 변경되었습니다');
                 const Todos = [...todos];
                 const todoIndex = Todos.findIndex(v => v.id === todo.id);
-                Todos[todoIndex].todo = response.data.todo;
+                Todos[todoIndex].todo = response.todo;
                 setTodos(Todos);
                 setEditTodo(false);
             } catch (err) {

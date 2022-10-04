@@ -37,9 +37,7 @@ const MainLogin = () => {
                     key: TOKEN_KEY as string,
                     value: res.access_token,
                 });
-                if (TokenService.get(TOKEN_KEY as string)) {
-                    naviagte('/todo', { replace: true });
-                }
+                naviagte('/todo', { replace: true });
             })
             .catch(err => {
                 debug(err);

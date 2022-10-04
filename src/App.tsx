@@ -1,13 +1,13 @@
-import Router from 'router';
+import { TOKEN_KEY } from 'config';
+import { useRoutes } from 'react-router-dom';
+import Routes from 'router';
+import TokenService from 'services/tokenService';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
 
-function App() {
-    return (
-        <ThemeProvider theme={theme}>
-            <Router />
-        </ThemeProvider>
-    );
-}
+export default function App() {
+    const token = TokenService.get(TOKEN_KEY as string);
+    const routes = useRoutes(Routes(!!token));
 
-export default App;
+    return <ThemeProvider theme={theme}>{routes}</ThemeProvider>;
+}
