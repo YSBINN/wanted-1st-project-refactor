@@ -7,7 +7,7 @@ import MainBanner from 'pages/signInAndSignUp/components/MainBanner';
 import MainLogin from 'pages/signInAndSignUp/components/LoginForm';
 import SignModal from 'pages/signInAndSignUp/components/SignUpModal';
 
-export default function MainPage() {
+export default function signInAndSignUp() {
     // state
     const [modal, setModal] = useState<boolean>(false);
 

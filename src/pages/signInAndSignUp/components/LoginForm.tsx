@@ -3,11 +3,11 @@ import useInput from 'hooks/useInput';
 import useRegExp from 'hooks/useRegExp';
 import debug from 'utils/debug';
 import { useNavigate } from 'react-router-dom';
-import UserSerivce from 'services/userService';
 import TokenService from 'services/tokenService';
 import CommonButton from 'components/button';
 import { UserDataType } from 'types/db/user';
 import styled from 'styled-components';
+import signInAndSignUpApi from 'api/signInAndSignUpApi';
 
 const MainLogin = () => {
     // state
@@ -30,7 +30,7 @@ const MainLogin = () => {
             alert('아이디와 비밀번호를 입력해주세요');
             return;
         } else {
-            UserSerivce.login(data)
+            signInAndSignUpApi.postSignInUser(data)
                 .then(response => {
                     TokenService.set({
                         key: process.env.REACT_APP_TOEKN_KEY as string,

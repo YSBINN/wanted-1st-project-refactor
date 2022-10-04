@@ -1,9 +1,9 @@
 import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
 
 const CommonButton: FC<StyleProps> = ({
-    children,
     size,
     fontSzie,
     mainColor,
@@ -29,7 +29,7 @@ const CommonButton: FC<StyleProps> = ({
             disabled={disabled}
             type={type}
         >
-            {children}
+            <Outlet />
         </CommonButtonTemp>
     );
 };

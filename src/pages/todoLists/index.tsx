@@ -1,22 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
 import MainLayout from 'components/layout';
-import TodoService from 'services/todoServeice';
 import styled from 'styled-components';
 import debug from 'utils/debug';
 import { TodoDataType } from 'types/db/todo';
 import { StyleProps } from 'types/style/style.types';
-import TodoInput from 'pages/todoList/components/TodoInput';
-import TodoTItle from 'pages/todoList/components/TodoTitle';
-import TodoList from 'pages/todoList/components/TodoList';
+import TodoInput from 'pages/todoLists/components/TodoInput';
+import TodoTItle from 'pages/todoLists/components/TodoTitle';
+import TodoList from 'pages/todoLists/components/TodoList';
+import todoListApi from 'api/todoListApi';
+import TodoContents from './components/TodoContents';
 
-const TodoPage = () => {
-    // state
+export default function TodoLists() {
     const [todos, setTodos] = useState<Array<TodoDataType>>([]);
 
     // onTodoRead func
     const onTodoRead = useCallback(async () => {
         try {
-            const response = await TodoService.read();
+            const response = await todoListApi.getTodoList();
             debug(response);
             setTodos(response.data);
         } catch (err) {
@@ -36,19 +36,13 @@ const TodoPage = () => {
             <TodoPageInner>
                 <TodoPageForm>
                     <TodoTItle />
-                    <div className="listbox">
-                        {todos &&
-                            todos.map((v: TodoDataType) => (
-                                <TodoList todos={todos} key={v.id} todo={v} setTodos={setTodos} />
-                            ))}
-                    </div>
+                    <TodoContents todos={todos} setTodos={setTodos} />
                     <TodoInput todos={todos} setTodos={setTodos} />
                 </TodoPageForm>
             </TodoPageInner>
         </MainLayout>
     );
-};
-export default TodoPage;
+}
 
 const TodoPageInner = styled.div`
     width: 100%;
@@ -64,11 +58,7 @@ const TodoPageForm = styled.form<StyleProps>`
     overflow-y: auto;
     background-color: #fff;
     box-shadow: 5px 5px 0px 1px #4545, -5px -5px 5px 5px ${props => props.theme.mainColor};
-    & > .listbox {
-        width: 360px;
-        padding-bottom: 120px;
-        margin: 0 auto;
-    }
+
     ::-webkit-scrollbar {
         width: 0.5rem;
     }

@@ -3,12 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
 import useInput from 'hooks/useInput';
 import CommonButton from 'components/button';
-import TodoService from 'services/todoServeice';
 import debug from 'utils/debug';
 import { TodoDataType } from 'types/db/todo';
 import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
-import { flexCenter } from 'styles/common';
+import todoListApi from 'api/todoListApi';
 
 interface TodoListProps {
     todos: TodoDataType[];
@@ -33,7 +32,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
         };
         // sync
         try {
-            const response = await TodoService.update(data);
+            const response = await todoListApi.updateTodoList(data);
             alert('상태가 변경되었습니다');
             const Todos = [...todos];
             const todoIndex = Todos.findIndex(v => v.id === todo.id);
@@ -60,7 +59,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
             };
             // sync
             try {
-                const response = await TodoService.update(data);
+                const response = await todoListApi.updateTodoList(data);
                 alert('투두리스트가 변경되었습니다');
                 const Todos = [...todos];
                 const todoIndex = Todos.findIndex(v => v.id === todo.id);
@@ -77,7 +76,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
     // remove hadnler
     const onTodoDelete = useCallback(async () => {
         try {
-            await TodoService.delete(todo.id);
+            await todoListApi.deleteTodoList(todo.id);
             alert('투두리스트가 삭제되었습니다');
             const Todos = todos.filter(v => v.id !== todo.id);
             setTodos(Todos);

@@ -1,18 +1,18 @@
-import { FC, ReactNode, SetStateAction, Dispatch, MutableRefObject } from 'react';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 // type
 interface MainLayoutProps {
-    children?: ReactNode;
-    setModal?: Dispatch<SetStateAction<boolean>>;
+    children: React.ReactNode;
+    setModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // fc
-const MainLayout: FC<MainLayoutProps> = ({ children, setModal }) => {
+export default function MainLayout({ setModal }: MainLayoutProps): JSX.Element {
     // render
     return (
-        <MainLayoutTemp>
-            <MainLayoutHeader>
+        <Container>
+            <Header>
                 <div>WANTED</div>
                 <p>
                     <>
@@ -20,20 +20,19 @@ const MainLayout: FC<MainLayoutProps> = ({ children, setModal }) => {
                         <span onClick={() => setModal && setModal(true)}>회원가입</span>
                     </>
                 </p>
-            </MainLayoutHeader>
-            {children}
-        </MainLayoutTemp>
+            </Header>
+            <Outlet />
+        </Container>
     );
-};
-export default MainLayout;
+}
 
 // style
-const MainLayoutTemp = styled.div`
+const Container = styled.div`
     width: 100%;
     min-height: 100vh;
 `;
 
-const MainLayoutHeader = styled.div`
+const Header = styled.div`
     width: 100%;
     height: 64px;
     display: flex;
