@@ -1,4 +1,4 @@
-import { SetStateAction, useCallback, Dispatch, FC } from 'react';
+import { SetStateAction, useCallback, Dispatch } from 'react';
 import CommonButton from 'components/button';
 import useInput from 'hooks/useInput';
 import debug from 'utils/debug';
@@ -37,7 +37,7 @@ export default function TodoInput({ todos, setTodos }: TodoInputType) {
                 alert('투두리스트 추가에 실패하였습니다');
             }
         },
-        [todoText],
+        [todoText, setTodoText, todos, setTodos],
     );
 
     // render

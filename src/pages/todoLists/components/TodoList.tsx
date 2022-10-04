@@ -1,4 +1,4 @@
-import { FC, SetStateAction, useCallback, Dispatch, useState } from 'react';
+import { SetStateAction, useCallback, Dispatch, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
 import useInput from 'hooks/useInput';
@@ -9,13 +9,7 @@ import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
 import todoListApi from 'api/todoListApi';
 
-interface TodoListProps {
-    todos: TodoDataType[];
-    todo: TodoDataType;
-    setTodos: Dispatch<SetStateAction<TodoDataType[]>>;
-}
-
-const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
+export default function TodoList({ todos, todo, setTodos }: TodoListProps) {
     // state
     const [eidtTodo, setEditTodo] = useState(false);
     const [newTodo, onChangeTodo] = useInput(todo.todo);
@@ -42,7 +36,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
             debug(err);
             alert('상태 업데이트에 실패하였습니다');
         }
-    }, [todo]);
+    }, [todo, setTodos, todos]);
 
     // todo update handler
     const onTodoUpdate = useCallback(async () => {
@@ -71,7 +65,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
                 alert('상태 업데이트에 실패하였습니다');
             }
         }
-    }, [todo, newTodo]);
+    }, [todo, newTodo, setTodos, todos]);
 
     // remove hadnler
     const onTodoDelete = useCallback(async () => {
@@ -84,7 +78,7 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
             debug(err);
             alert('투두리스트가 삭제에 실패하였습니다');
         }
-    }, [todos, todo]);
+    }, [todos, todo, setTodos]);
 
     // render
     return (
@@ -130,8 +124,13 @@ const TodoList: FC<TodoListProps> = ({ todos, todo, setTodos }) => {
             </div>
         </TodoListCard>
     );
-};
-export default TodoList;
+}
+
+interface TodoListProps {
+    todos: TodoDataType[];
+    todo: TodoDataType;
+    setTodos: Dispatch<SetStateAction<TodoDataType[]>>;
+}
 
 // style
 const TodoListCard = styled.div<StyleProps>`

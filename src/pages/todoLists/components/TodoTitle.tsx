@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
 
-// fc
-const TodoTItle = () => {
+export default function TodoTItle(): JSX.Element {
     // render
     return <TodoTitleTemp>TO DO LIST</TodoTitleTemp>;
-};
-export default TodoTItle;
+}
 
 // style
 const TodoTitleTemp = styled.div<StyleProps>`

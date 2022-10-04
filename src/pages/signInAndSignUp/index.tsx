@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import MainLayout from 'components/layout';
-import styled from 'styled-components';
 import MainBanner from 'pages/signInAndSignUp/components/MainBanner';
-import MainLogin from 'pages/signInAndSignUp/components/LoginForm';
+import LoginForm from 'pages/signInAndSignUp/components/LoginForm';
 import SignModal from 'pages/signInAndSignUp/components/SignUpModal';
+import styled from 'styled-components';
 
 export default function SignInAndSignUp() {
     // state
@@ -15,7 +15,7 @@ export default function SignInAndSignUp() {
             <MainLayout setModal={setModal}>
                 <MainPageInner>
                     <MainBanner />
-                    <MainLogin />
+                    <LoginForm />
                 </MainPageInner>
             </MainLayout>
         </>

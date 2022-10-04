@@ -27,7 +27,7 @@ export default function TodoLists() {
     // read todo func
     useEffect(() => {
         onTodoRead();
-    }, []);
+    }, [onTodoRead]);
 
     // render
     return (

@@ -43,7 +43,7 @@ const SignModal: FC<SignModalProp> = ({ setModal }) => {
                 debug(err);
                 alert('회원가입에 실패하셨습니다');
             });
-    }, [email, password]);
+    }, [email, password, setModal]);
 
     // render
     return (

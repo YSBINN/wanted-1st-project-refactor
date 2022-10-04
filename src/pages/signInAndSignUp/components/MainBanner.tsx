@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MainImage from 'assets/img/main_img.png';
 
-const MainBanner = () => {
+export default function MainBanner() {
     //render
     return (
         <MainBannerTemp>
@@ -12,8 +12,7 @@ const MainBanner = () => {
             <p>프리온보딩, 프론트엔드</p>
         </MainBannerTemp>
     );
-};
-export default MainBanner;
+}
 
 const MainBannerTemp = styled.div`
     width: 550px;

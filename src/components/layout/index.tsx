@@ -1,14 +1,13 @@
-import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 // type
 interface MainLayoutProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     setModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // fc
-export default function MainLayout({ setModal }: MainLayoutProps): JSX.Element {
+export default function MainLayout({ setModal, children }: MainLayoutProps): JSX.Element {
     // render
     return (
         <Container>
@@ -21,7 +20,7 @@ export default function MainLayout({ setModal }: MainLayoutProps): JSX.Element {
                     </>
                 </p>
             </Header>
-            <Outlet />
+            {children}
         </Container>
     );
 }

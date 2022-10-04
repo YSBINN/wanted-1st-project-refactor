@@ -1,11 +1,6 @@
-import { Dispatch, SetStateAction, FC } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
-
-// type
-interface SignModalHeaderProp {
-    setModal: Dispatch<SetStateAction<boolean>>;
-}
 
 // fc
 export default function SignModalHeader({ setModal }: SignModalHeaderProp) {
@@ -16,6 +11,10 @@ export default function SignModalHeader({ setModal }: SignModalHeaderProp) {
             <button onClick={() => setModal(false)}>x</button>
         </SignHeaderTemp>
     );
+}
+// type
+interface SignModalHeaderProp {
+    setModal: Dispatch<SetStateAction<boolean>>;
 }
 
 // style

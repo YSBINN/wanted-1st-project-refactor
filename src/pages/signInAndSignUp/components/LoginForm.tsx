@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import signInAndSignUpApi from 'api/signInAndSignUpApi';
 import { TOKEN_KEY } from 'config';
 
-const MainLogin = () => {
+export default function LoginForm() {
     // state
     const [email, onChangeEmail] = useInput<string>('');
     const [password, onChangePassword] = useInput<string>('');
@@ -43,7 +43,7 @@ const MainLogin = () => {
                 debug(err);
                 alert('이메일 혹은 비밀번호를 확인해주세요');
             });
-    }, [email, password]);
+    }, [email, password, naviagte]);
 
     // render
     return (
@@ -71,8 +71,7 @@ const MainLogin = () => {
             </CommonButton>
         </LoginFormTemp>
     );
-};
-export default MainLogin;
+}
 
 // style
 const LoginFormTemp = styled.div`
