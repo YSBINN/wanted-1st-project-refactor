@@ -3,12 +3,12 @@ import CommonButton from 'components/button';
 import { BlackBackGroundTemp } from 'styles/common';
 import useInput from 'hooks/useInput';
 import useRegExp from 'hooks/useRegExp';
-import { useEffect, useState, useCallback } from 'react';
-import UserSerivce from 'services/userService';
+import { useCallback } from 'react';
 import debug from 'utils/debug';
 import SignModalHeader from './SignUpHeader';
 import styled from 'styled-components';
 import { UserDataType } from 'types/db/user';
+import signInAndSignUpApi from 'api/signInAndSignUpApi';
 
 // type
 interface SignModalProp {
@@ -27,23 +27,22 @@ const SignModal: FC<SignModalProp> = ({ setModal }) => {
     // onSignInhandler
     const onSignInhandler = useCallback(() => {
         const data: UserDataType = {
-            email: email,
-            password: password,
+            email,
+            password,
         };
         if (email === '' && password === '') {
             alert('아이디와 비밀번호를 입력해주세요');
-            return;
-        } else {
-            UserSerivce.signUp(data)
-                .then(() => {
-                    alert('축하합니다. 회원가입에 성고하셨습니다');
-                    setModal(false);
-                })
-                .catch(err => {
-                    debug(err);
-                    alert('회원가입에 실패하셨습니다');
-                });
         }
+        signInAndSignUpApi
+            .postSignUpUser(data)
+            .then(() => {
+                alert('축하합니다. 회원가입에 성고하셨습니다');
+                setModal(false);
+            })
+            .catch(err => {
+                debug(err);
+                alert('회원가입에 실패하셨습니다');
+            });
     }, [email, password]);
 
     // render

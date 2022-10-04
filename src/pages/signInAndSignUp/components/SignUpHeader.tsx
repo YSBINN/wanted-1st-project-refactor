@@ -8,7 +8,7 @@ interface SignModalHeaderProp {
 }
 
 // fc
-const SignModalHeader: FC<SignModalHeaderProp> = ({ setModal }) => {
+export default function SignModalHeader({ setModal }: SignModalHeaderProp) {
     // render
     return (
         <SignHeaderTemp>
@@ -16,8 +16,7 @@ const SignModalHeader: FC<SignModalHeaderProp> = ({ setModal }) => {
             <button onClick={() => setModal(false)}>x</button>
         </SignHeaderTemp>
     );
-};
-export default SignModalHeader;
+}
 
 // style
 const SignHeaderTemp = styled.div<StyleProps>`

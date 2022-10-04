@@ -1,11 +1,11 @@
 import { SetStateAction, useCallback, Dispatch, FC } from 'react';
 import CommonButton from 'components/button';
 import useInput from 'hooks/useInput';
-import TodoService from 'services/todoServeice';
 import debug from 'utils/debug';
 import { TodoDataType, TodoPostType } from 'types/db/todo';
 import styled from 'styled-components';
 import { StyleProps } from 'types/style/style.types';
+import todoListApi from 'api/todoListApi';
 
 // type
 interface TodoInputType {
@@ -14,7 +14,7 @@ interface TodoInputType {
 }
 
 // fc
-const TodoInput: FC<TodoInputType> = ({ todos, setTodos }) => {
+export default function TodoInput({ todos, setTodos }: TodoInputType) {
     // state
     const [todoText, onChangeTodoText, setTodoText] = useInput('');
 
@@ -22,23 +22,19 @@ const TodoInput: FC<TodoInputType> = ({ todos, setTodos }) => {
     const onCreateTodoHandler = useCallback(
         async (e: any) => {
             e.preventDefault();
-            if (todoText.trim() === '') {
-                return;
-            } else {
-                const data: TodoPostType = {
-                    todo: todoText,
-                };
-
-                try {
-                    const response = await TodoService.create(data);
-                    debug(response);
-                    alert('투두리스트가 등록되었습니다');
-                    setTodos([response.data, ...todos]);
-                    setTodoText('');
-                } catch (err) {
-                    debug(err);
-                    alert('투두리스트 추가에 실패하였습니다');
-                }
+            const data: TodoPostType = {
+                todo: todoText,
+            };
+            if (todoText.trim() === '') return null;
+            try {
+                const res = await todoListApi.postTodoList(data);
+                debug(res);
+                alert('투두리스트가 등록되었습니다');
+                setTodos([res, ...todos]);
+                setTodoText('');
+            } catch (err) {
+                debug(err);
+                alert('투두리스트 추가에 실패하였습니다');
             }
         },
         [todoText],
@@ -60,8 +56,7 @@ const TodoInput: FC<TodoInputType> = ({ todos, setTodos }) => {
             </CommonButton>
         </TodoInpuTemp>
     );
-};
-export default TodoInput;
+}
 
 const TodoInpuTemp = styled.div<StyleProps>`
     width: 440px;

@@ -6,7 +6,6 @@ import { TodoDataType } from 'types/db/todo';
 import { StyleProps } from 'types/style/style.types';
 import TodoInput from 'pages/todoLists/components/TodoInput';
 import TodoTItle from 'pages/todoLists/components/TodoTitle';
-import TodoList from 'pages/todoLists/components/TodoList';
 import todoListApi from 'api/todoListApi';
 import TodoContents from './components/TodoContents';
 
@@ -18,7 +17,7 @@ export default function TodoLists() {
         try {
             const response = await todoListApi.getTodoList();
             debug(response);
-            setTodos(response.data);
+            setTodos(response);
         } catch (err) {
             debug(err);
             alert('투두리스트 목록 불러오기에 실패하였습니다');

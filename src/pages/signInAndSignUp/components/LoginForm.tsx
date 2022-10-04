@@ -8,6 +8,7 @@ import CommonButton from 'components/button';
 import { UserDataType } from 'types/db/user';
 import styled from 'styled-components';
 import signInAndSignUpApi from 'api/signInAndSignUpApi';
+import { TOKEN_KEY } from 'config';
 
 const MainLogin = () => {
     // state
@@ -23,28 +24,27 @@ const MainLogin = () => {
     // onLoginHandler
     const onLoginHandler = useCallback(() => {
         const data: UserDataType = {
-            email: email,
-            password: password,
+            email,
+            password,
         };
         if (email === '' && password === '') {
             alert('아이디와 비밀번호를 입력해주세요');
-            return;
-        } else {
-            signInAndSignUpApi.postSignInUser(data)
-                .then(response => {
-                    TokenService.set({
-                        key: process.env.REACT_APP_TOEKN_KEY as string,
-                        value: response.data.access_token,
-                    });
-                    if (TokenService.get(process.env.REACT_APP_TOEKN_KEY as string)) {
-                        naviagte('/todo', { replace: true });
-                    }
-                })
-                .catch(err => {
-                    debug(err);
-                    alert('이메일 혹은 비밀번호를 확인해주세요');
-                });
         }
+        signInAndSignUpApi
+            .postSignInUser(data)
+            .then(res => {
+                TokenService.set({
+                    key: TOKEN_KEY as string,
+                    value: res.access_token,
+                });
+                if (TokenService.get(TOKEN_KEY as string)) {
+                    naviagte('/todo', { replace: true });
+                }
+            })
+            .catch(err => {
+                debug(err);
+                alert('이메일 혹은 비밀번호를 확인해주세요');
+            });
     }, [email, password]);
 
     // render
